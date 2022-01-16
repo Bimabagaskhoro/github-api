@@ -47,6 +47,7 @@ class MainFragment : Fragment(), UserAdapter.DataCallback {
             val search = edtSearch.text.toString()
             if (search.isEmpty()) return
             initViewModel(search)
+            showLoading(true)
         }
     }
 
@@ -60,6 +61,7 @@ class MainFragment : Fragment(), UserAdapter.DataCallback {
                     setShow(data)
                     callback(this@MainFragment)
                 }
+                showLoading(false)
                 binding.rvGithubUser.apply {
                     layoutManager = LinearLayoutManager(context)
                     setHasFixedSize(true)
@@ -67,6 +69,20 @@ class MainFragment : Fragment(), UserAdapter.DataCallback {
                 }
             })
 
+        }
+    }
+
+    private fun showLoading(state: Boolean) {
+        if (state) {
+            binding.apply {
+                progressbar.visibility = View.VISIBLE
+                rvGithubUser.visibility = View.INVISIBLE
+            }
+        } else {
+            binding.apply {
+                progressbar.visibility = View.INVISIBLE
+                rvGithubUser.visibility = View.VISIBLE
+            }
         }
     }
 

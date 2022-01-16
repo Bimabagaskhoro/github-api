@@ -10,7 +10,8 @@ import com.bimabagaskhoro.asigmentkompas.databinding.ItemsRepositoryGithubBindin
 class ReposAdapter : RecyclerView.Adapter<ReposAdapter.ViewHolder>() {
     private var items = ArrayList<ItemRepos>()
 
-    internal fun setRepos(repos: List<ItemRepos>) {
+    internal fun setRepos(repos: List<ItemRepos>?) {
+        if (repos == null) return
         this.items.clear()
         this.items.addAll(repos)
         notifyDataSetChanged()
