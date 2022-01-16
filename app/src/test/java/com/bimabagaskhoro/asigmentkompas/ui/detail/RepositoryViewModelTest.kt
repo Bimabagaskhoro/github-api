@@ -41,17 +41,17 @@ class RepositoryViewModelTest {
 
     @Test
     fun getReposUser() {
-//        val dummyUser = DataDummy.generateDummyRepos()
-//        val users = MutableLiveData<List<ItemRepos>>()
-//        users.value = dummyUser
-//
-//        `when`(userRepository.loadSearchUser(username)).thenReturn(users)
-//        val userRepos = viewModel.getReposUser(username).value
-//        verify(userRepository).loadSearchUser(username)
-//        assertNotNull(userRepos)
-//        assertEquals(0, userRepos?.size)
-//
-//        viewModel.getReposUser(username).observeForever(usersObserver)
-//        verify(usersObserver).onChanged(dummyUser)
+        val dummyUser = DataDummy.generateDummyRepos()
+        val users = MutableLiveData<List<ItemRepos>>()
+        users.value = dummyUser
+
+        `when`(userRepository.loadRepos(username)).thenReturn(users)
+        val userRepos = viewModel.getReposUser(username).value
+        verify(userRepository).loadRepos(username)
+        assertNotNull(userRepos)
+        assertEquals(1, userRepos?.size)
+
+        viewModel.getReposUser(username).observeForever(usersObserver)
+        verify(usersObserver).onChanged(dummyUser)
     }
 }

@@ -43,10 +43,11 @@
 
     <TextView
         android:id="@+id/tv_bio"
-        android:layout_width="250dp"
+        android:layout_width="280dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:fontFamily="@font/roboto"
+        android:maxLines="5"
         android:textColor="@color/grey_700"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="@+id/tv_username_detail"
@@ -55,16 +56,16 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_repository_github"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="140dp"
         android:layout_marginEnd="24dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_bio"
+        app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/items_repository_github" />
 
     <ProgressBar

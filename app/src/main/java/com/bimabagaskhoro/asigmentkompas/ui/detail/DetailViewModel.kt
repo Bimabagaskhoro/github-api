@@ -6,12 +6,5 @@ import com.bimabagaskhoro.asigmentkompas.data.repository.UserRepository
 import com.bimabagaskhoro.asigmentkompas.data.source.remote.response.ItemsDetail
 
 class DetailViewModel(private val userRepository: UserRepository) : ViewModel() {
-
-    // view model detail user
-    private lateinit var detailUser: LiveData<ItemsDetail>
-    fun setDetailUser(username: String) {
-        detailUser = userRepository.loadDetailUser(username)
-    }
-
-    fun getDetailUser() = detailUser
+    fun getDetailUser(username: String): LiveData<ItemsDetail> = userRepository.loadDetailUser(username)
 }

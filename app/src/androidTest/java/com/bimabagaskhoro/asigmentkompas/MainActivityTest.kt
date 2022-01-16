@@ -53,6 +53,11 @@ class MainActivityTest {
         onView(withId(R.id.tv_name)).check(matches(ViewMatchers.isDisplayed()))
         onView(withId(R.id.tv_bio)).check(matches(ViewMatchers.isDisplayed()))
         onView(withId(R.id.img_profile_detail)).check(matches(ViewMatchers.isDisplayed()))
+
+        onView(withId(R.id.rv_repository_github)).check(matches(ViewMatchers.isDisplayed()))
+        onView(withId(R.id.rv_repository_github)).perform(
+            RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(0))
+        onView(withId(R.id.rv_repository_github)).check(matches(ViewMatchers.isDisplayed()))
     }
 
 }

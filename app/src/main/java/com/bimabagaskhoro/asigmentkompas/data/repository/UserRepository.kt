@@ -78,7 +78,7 @@ class UserRepository private constructor(
                     for (repos in listRepo) {
                         repos.apply {
                             val repository = ItemRepos(
-                                login, updatedAt, stargazersCount, description, name
+                                updatedAt, stargazersCount, description, name
                             )
                             listRepo.add(repository)
                         }

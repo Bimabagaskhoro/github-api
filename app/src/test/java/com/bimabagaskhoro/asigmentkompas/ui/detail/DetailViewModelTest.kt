@@ -45,8 +45,7 @@ class DetailViewModelTest {
         users.value = dummyDetailUser
 
         `when`(userRepository.loadDetailUser(username)).thenReturn(users)
-        viewModel.setDetailUser(username)
-        val detailUser = viewModel.getDetailUser().value
+        val detailUser = viewModel.getDetailUser(username).value
         verify(userRepository).loadDetailUser(username)
         assertNotNull(detailUser)
 
@@ -57,7 +56,7 @@ class DetailViewModelTest {
             assertEquals(name, detailUser?.name)
         }
 
-        viewModel.getDetailUser().observeForever(userObserver)
+        viewModel.getDetailUser(username).observeForever(userObserver)
         verify(userObserver).onChanged(dummyDetailUser)
 
     }

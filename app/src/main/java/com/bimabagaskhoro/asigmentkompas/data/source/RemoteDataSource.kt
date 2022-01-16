@@ -44,25 +44,6 @@ class RemoteDataSource {
             })
     }
 
-    fun getDetailUser(callback: LoadDetailUserCallback, username: String) {
-        EspressoIdlingResource.increment()
-        ApiClient().apiInstance().getUserDetail(username)
-            .enqueue(object : Callback<ItemsDetail> {
-                override fun onResponse(call: Call<ItemsDetail>, response: Response<ItemsDetail>) {
-                    if (response.isSuccessful){
-                        callback.onAllDetailUserReceived(response.body())
-                        EspressoIdlingResource.decrement()
-                    }
-                }
-
-                override fun onFailure(call: Call<ItemsDetail>, t: Throwable) {
-                    Log.e(TAG, "Failure to Get Detail User ${t.message}")
-                    EspressoIdlingResource.decrement()
-                }
-            })
-    }
-
-
     fun getReposUser(callback: LoadReposUserCallback, username: String) {
         EspressoIdlingResource.increment()
         ApiClient().apiInstance().getUserRepository(username)
@@ -84,6 +65,25 @@ class RemoteDataSource {
 
             })
     }
+
+    fun getDetailUser(callback: LoadDetailUserCallback, username: String) {
+        EspressoIdlingResource.increment()
+        ApiClient().apiInstance().getUserDetail(username)
+            .enqueue(object : Callback<ItemsDetail> {
+                override fun onResponse(call: Call<ItemsDetail>, response: Response<ItemsDetail>) {
+                    if (response.isSuccessful){
+                        callback.onAllDetailUserReceived(response.body())
+                        EspressoIdlingResource.decrement()
+                    }
+                }
+
+                override fun onFailure(call: Call<ItemsDetail>, t: Throwable) {
+                    Log.e(TAG, "Failure to Get Detail User ${t.message}")
+                    EspressoIdlingResource.decrement()
+                }
+            })
+    }
+
 
     interface LoadSearchUserCallback {
         fun onAllSearchUserReceived(userResponse: List<ItemsUser>?)

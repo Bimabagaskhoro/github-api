@@ -4,10 +4,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bimabagaskhoro.asigmentkompas.R
 import com.bimabagaskhoro.asigmentkompas.adapter.ReposAdapter
+import com.bimabagaskhoro.asigmentkompas.data.source.RemoteDataSource
 import com.bimabagaskhoro.asigmentkompas.data.source.remote.response.ItemRepos
 import com.bimabagaskhoro.asigmentkompas.data.source.remote.response.ItemsDetail
 import com.bimabagaskhoro.asigmentkompas.databinding.ActivityDetailBinding
@@ -38,40 +40,40 @@ class DetailActivity : AppCompatActivity() {
             } else {
                 Log.d(TAG, "No Username")
             }
+            val bundle = Bundle()
+            bundle.putString(EXTRA_DATA, username)
         }
 
-    }
-
-    private fun initViewModel(username: String) {
-        val factory = ViewModelFactory.getInstance(this)
-        val viewModel = ViewModelProvider(this, factory)[DetailViewModel::class.java]
-
-        viewModel.setDetailUser(username)
-        viewModel.getDetailUser().observe(this, { detail ->
-            dataDetail(detail)
-        })
     }
 
     private fun initViewModelRepos(username: String) {
         val factory = ViewModelFactory.getInstance(this)
         val viewModel = ViewModelProvider(this, factory)[RepositoryViewModel::class.java]
+
         reposAdapters = ReposAdapter()
         viewModel.getReposUser(username).observe(this, { data ->
-            if (data != null) {
-                dataRepos(data)
-                showLoading(false)
+            reposAdapters.apply {
+                setRepos(data)
+            }
+            showLoading(false)
+            binding.apply {
+                rvRepositoryGithub.layoutManager = LinearLayoutManager(this@DetailActivity)
+                rvRepositoryGithub.setHasFixedSize(true)
+                rvRepositoryGithub.adapter = reposAdapters
             }
         })
     }
 
-    private fun dataRepos(data: List<ItemRepos>) {
-        reposAdapters.setRepos(data)
-        binding.apply {
-            rvRepositoryGithub.layoutManager = LinearLayoutManager(this@DetailActivity)
-            rvRepositoryGithub.setHasFixedSize(true)
-            rvRepositoryGithub.adapter = reposAdapters
-        }
+    private fun initViewModel(username: String) {
+        val factory = ViewModelFactory.getInstance(this)
+        val viewModel = ViewModelProvider(this, factory)[DetailViewModel::class.java]
+        viewModel.getDetailUser(username).observe(this, { detail ->
+            if (detail != null){
+                dataDetail(detail)
+            }
+        })
     }
+
     private fun dataDetail(detail: ItemsDetail?) {
         binding.apply {
             tvName.text = detail?.name

@@ -31,10 +31,9 @@ object DataDummy {
         users.add(
             ItemRepos(
                 "asd",
-                "asd",
                 1,
                 "asd",
-                "bimabagaskhoro"
+                "asd"
             )
         )
         return users
