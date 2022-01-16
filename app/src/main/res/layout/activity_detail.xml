@@ -7,7 +7,7 @@
     tools:context=".ui.detail.DetailActivity">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/img_profile"
+        android:id="@+id/img_profile_detail"
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:layout_marginStart="24dp"
@@ -25,12 +25,12 @@
         android:fontFamily="@font/roboto"
         android:textColor="@color/black"
         android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@+id/img_profile"
+        app:layout_constraintStart_toEndOf="@+id/img_profile_detail"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Michael Strong" />
 
     <TextView
-        android:id="@+id/tv_username"
+        android:id="@+id/tv_username_detail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
@@ -49,8 +49,8 @@
         android:fontFamily="@font/roboto"
         android:textColor="@color/grey_700"
         android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="@+id/tv_username"
-        app:layout_constraintTop_toBottomOf="@+id/tv_username"
+        app:layout_constraintStart_toStartOf="@+id/tv_username_detail"
+        app:layout_constraintTop_toBottomOf="@+id/tv_username_detail"
         tools:text="Android Engineer, Learn is My\npassion" />
 
     <androidx.recyclerview.widget.RecyclerView

@@ -75,12 +75,12 @@ class DetailActivity : AppCompatActivity() {
     private fun dataDetail(detail: ItemsDetail?) {
         binding.apply {
             tvName.text = detail?.name
-            tvUsername.text = detail?.login
+            tvUsernameDetail.text = detail?.login
             tvBio.text = detail?.bio
             Glide.with(this@DetailActivity)
                 .load(detail?.avatarUrl)
                 .apply(RequestOptions.placeholderOf(R.color.grey))
-                .into(imgProfile)
+                .into(imgProfileDetail)
         }
     }
 

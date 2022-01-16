@@ -44,6 +44,10 @@ data class ItemsDetail(
 
 @Parcelize
 data class ItemRepos(
+
+	@SerializedName("login")
+	val login: String,
+
 	@SerializedName("updated_at")
 	val updatedAt: String,
 
